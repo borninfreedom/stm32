@@ -1,0 +1,759 @@
+###############################################################################
+#
+# IAR ELF Linker V7.50.2.10312/W32 for ARM                20/Jun/2019  13:51:33
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Exe\YS-F4Pro.out
+#    Map file     =  
+#        C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\List\YS-F4Pro.map
+#    Command line =  
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\bsp_key.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\bsp_STEPMOTOR.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\main.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\startup_stm32f407xx.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_assert.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_adc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_adc_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_can.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_cec.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_cortex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_crc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_cryp.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_cryp_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dac.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dac_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dcmi.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dcmi_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dfsdm.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dma.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dma2d.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dma_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_dsi.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_eth.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_flash.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_flash_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_flash_ramfunc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_fmpi2c.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_fmpi2c_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_gpio.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_hash.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_hash_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_hcd.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_i2c.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_i2c_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_i2s.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_i2s_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_irda.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_iwdg.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_lptim.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_ltdc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_ltdc_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_mmc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_msp.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_nand.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_nor.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_pccard.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_pcd.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_pcd_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_pwr.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_pwr_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_qspi.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_rcc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_rcc_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_rng.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_rtc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_rtc_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_sai.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_sai_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_sd.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_sdram.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_smartcard.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_spdifrx.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_spi.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_sram.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_tim.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_tim_ex.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_uart.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_usart.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_hal_wwdg.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_it.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_adc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_crc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_dac.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_dma.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_dma2d.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_exti.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_fmc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_fsmc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_gpio.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_i2c.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_lptim.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_pwr.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_rcc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_rng.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_rtc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_sdmmc.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_spi.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_tim.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_usart.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_usb.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\stm32f4xx_ll_utils.o"
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj\system_stm32f4xx.o"
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFull -o
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Exe\YS-F4Pro.out" --map
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM\YS-F4Pro\List\YS-F4Pro.map" --config
+#        "C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3.
+#        程序资料\3. 软件设计之电机例程\3.
+#        硬石步进电机控制例程\YSF4_HAL_MOTOR-103.
+#        57&42步进电机旋转控制实现\EWARM/stm32f407xx_flash.icf" --semihosting
+#        --entry __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x080fffff] { ro };
+"P2":  place in [from 0x20000000 to 0x2001ffff] { rw, block CSTACK, block HEAP };
+
+  Section            Kind        Address    Size  Object
+  -------            ----        -------    ----  ------
+"A1":                                      0x188
+  .intvec            ro code  0x08000000   0x188  startup_stm32f407xx.o [1]
+                            - 0x08000188   0x188
+
+"P1":                                     0x16de
+  .text              ro code  0x08000188   0x6a6  stm32f4xx_hal_tim.o [1]
+  .text              ro code  0x08000830   0x164  bsp_STEPMOTOR.o [1]
+  .text              ro code  0x08000994   0x1dc  main.o [1]
+  .text              ro code  0x08000b70    0xac  stm32f4xx_hal_tim_ex.o [1]
+  .text              ro code  0x08000c1c   0x1f8  stm32f4xx_hal_gpio.o [1]
+  .text              ro code  0x08000e14    0xe2  stm32f4xx_hal_cortex.o [1]
+  .text              ro code  0x08000ef8   0x45e  stm32f4xx_hal_rcc.o [1]
+  .text              ro code  0x08001358    0x90  stm32f4xx_hal.o [1]
+  .text              ro code  0x080013e8   0x154  bsp_key.o [1]
+  .text              ro code  0x0800153c    0x60  stm32f4xx_hal_msp.o [1]
+  .text              ro code  0x0800159c    0x60  system_stm32f4xx.o [1]
+  .text              ro code  0x080015fc    0x38  packbits_init_single.o [5]
+  .text              ro code  0x08001634    0x2c  stm32f4xx_it.o [1]
+  .text              ro code  0x08001660    0x28  data_init.o [5]
+  .text              ro code  0x08001688    0x22  fpinit_M.o [4]
+  .iar.init_table    const    0x080016ac    0x10  - Linker created -
+  .text              ro code  0x080016bc    0x1a  cmain.o [5]
+  .text              ro code  0x080016d6     0x4  low_level_init.o [3]
+  .text              ro code  0x080016da     0x4  exit.o [3]
+  .text              ro code  0x080016e0     0xa  cexit.o [5]
+  .text              ro code  0x080016ec    0x14  exit.o [6]
+  .text              ro code  0x08001700    0x10  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001710     0xc  cstartup_M.o [5]
+  .text              ro code  0x0800171c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001720     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001724     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001728     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800172c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001730     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001734     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001738     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800173c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001740     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001744     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001748     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800174c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001750     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001754     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001758     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800175c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001760     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001764     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001768     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800176c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001770     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001774     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001778     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800177c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001780     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001784     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001788     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800178c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001790     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001794     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001798     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800179c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017a0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017a4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017a8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017ac     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017b0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017b4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017b8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017bc     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017c0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017c4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017c8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017cc     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017d0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017d4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017d8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017dc     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017e0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017e4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017e8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017ec     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017f0     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017f4     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017f8     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x080017fc     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001800     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001804     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001808     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800180c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001810     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001814     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001818     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800181c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001820     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001824     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001828     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800182c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001830     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001834     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001838     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800183c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001840     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001844     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001848     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x0800184c     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001850     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001854     0x4  startup_stm32f407xx.o [1]
+  .text              ro code  0x08001858     0x4  startup_stm32f407xx.o [1]
+  .rodata            const    0x0800185c     0x0  packbits_init_single.o [5]
+  Initializer bytes  const    0x0800185c     0xa  <for P2-1>
+                            - 0x08001866  0x16de
+
+"P2", part 1 of 2:                          0x50
+  P2-1                        0x20000000    0x50  <Init block>
+    .data            inited   0x20000000    0x40  bsp_STEPMOTOR.o [1]
+    .data            inited   0x20000040     0x4  system_stm32f4xx.o [1]
+    .bss             inited   0x20000044     0x8  main.o [1]
+    .bss             inited   0x2000004c     0x4  stm32f4xx_hal.o [1]
+                            - 0x20000050    0x50
+
+"P2", part 2 of 2:                         0x400
+  CSTACK                      0x20000050   0x400  <Block>
+    CSTACK           uninit   0x20000050   0x400  <Block tail>
+                            - 0x20000450   0x400
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Copy/packbits (__iar_packbits_init_single3)
+    1 source range, total size 0xa (12% of destination):
+          0x0800185c   0xa
+    1 destination range, total size 0x50:
+          0x20000000  0x50
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3. 程序资料\3. 软件设计之电机例程\3. 硬石步进电机控制例程\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj: [1]
+    bsp_STEPMOTOR.o             356        8       64
+    bsp_key.o                   340
+    main.o                      476        1        8
+    startup_stm32f407xx.o       728
+    stm32f4xx_hal.o             144        1        4
+    stm32f4xx_hal_cortex.o      226
+    stm32f4xx_hal_gpio.o        504
+    stm32f4xx_hal_msp.o          96
+    stm32f4xx_hal_rcc.o       1 118
+    stm32f4xx_hal_tim.o       1 702
+    stm32f4xx_hal_tim_ex.o      172
+    stm32f4xx_it.o               44
+    system_stm32f4xx.o           96                 4
+    -------------------------------------------------
+    Total:                    6 002       10       80
+
+command line: [2]
+    -------------------------------------------------
+    Total:
+
+dl7M_tlf.a: [3]
+    exit.o                        4
+    low_level_init.o              4
+    -------------------------------------------------
+    Total:                        8
+
+m7M_tls.a: [4]
+    fpinit_M.o                   34
+    -------------------------------------------------
+    Total:                       34
+
+rt7M_tl.a: [5]
+    cexit.o                      10
+    cmain.o                      26
+    cstartup_M.o                 12
+    data_init.o                  40
+    packbits_init_single.o       56
+    -------------------------------------------------
+    Total:                      144
+
+shb_l.a: [6]
+    exit.o                       20
+    -------------------------------------------------
+    Total:                       20
+
+    Gaps                         10        2
+    Linker created                        16    1 024
+-----------------------------------------------------
+    Grand Total:              6 218       28    1 104
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0x080016ac          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x080016bc          --   Gb  - Linker created -
+?main                   0x080016bd         Code  Gb  cmain.o [5]
+AHBPrescTable           0x080015ec   0x10  Data  Gb  system_stm32f4xx.o [1]
+BusFault_Handler        0x0800163d    0x2  Code  Gb  stm32f4xx_it.o [1]
+CSTACK$$Base            0x20000050          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000450          --   Gb  - Linker created -
+DebugMon_Handler        0x08001643    0x2  Code  Gb  stm32f4xx_it.o [1]
+HAL_Delay               0x080013bd   0x1e  Code  Wk  stm32f4xx_hal.o [1]
+HAL_GPIO_Init           0x08000c1d  0x1b6  Code  Gb  stm32f4xx_hal_gpio.o [1]
+HAL_GPIO_ReadPin        0x08000dd3    0xc  Code  Gb  stm32f4xx_hal_gpio.o [1]
+HAL_GPIO_WritePin       0x08000ddf    0x8  Code  Gb  stm32f4xx_hal_gpio.o [1]
+HAL_GetTick             0x080013b7    0x6  Code  Wk  stm32f4xx_hal.o [1]
+HAL_IncTick             0x080013ad    0xa  Code  Wk  stm32f4xx_hal.o [1]
+HAL_Init                0x08001359   0x30  Code  Gb  stm32f4xx_hal.o [1]
+HAL_InitTick            0x08001389   0x24  Code  Wk  stm32f4xx_hal.o [1]
+HAL_MspInit             0x0800153d   0x60  Code  Gb  stm32f4xx_hal_msp.o [1]
+HAL_NVIC_EnableIRQ      0x08000e83    0xc  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_NVIC_SetPriority    0x08000e49   0x3a  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_NVIC_SetPriorityGrouping
+                        0x08000e2f   0x1a  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_RCC_CSSCallback     0x08001355    0x2  Code  Wk  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_ClockConfig     0x08001183  0x12a  Code  Gb  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_EnableCSS       0x080012bb    0x8  Code  Gb  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_GetHCLKFreq     0x08001309    0x6  Code  Gb  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_GetSysClockFreq
+                        0x080012c3   0x46  Code  Wk  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_NMI_IRQHandler  0x0800130f   0x14  Code  Gb  stm32f4xx_hal_rcc.o [1]
+HAL_RCC_OscConfig       0x08000ef9  0x282  Code  Wk  stm32f4xx_hal_rcc.o [1]
+HAL_SYSTICK_CLKSourceConfig
+                        0x08000ebf   0x14  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_SYSTICK_Callback    0x08000ef5    0x2  Code  Wk  stm32f4xx_hal_cortex.o [1]
+HAL_SYSTICK_Config      0x08000e97   0x28  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_SYSTICK_IRQHandler  0x08000eed    0x8  Code  Gb  stm32f4xx_hal_cortex.o [1]
+HAL_TIMEx_BreakCallback
+                        0x08000c1b    0x2  Code  Wk  stm32f4xx_hal_tim_ex.o [1]
+HAL_TIMEx_CommutationCallback
+                        0x08000c19    0x2  Code  Wk  stm32f4xx_hal_tim_ex.o [1]
+HAL_TIMEx_ConfigBreakDeadTime
+                        0x08000bc7   0x52  Code  Gb  stm32f4xx_hal_tim_ex.o [1]
+HAL_TIMEx_MasterConfigSynchronization
+                        0x08000b7d   0x4a  Code  Gb  stm32f4xx_hal_tim_ex.o [1]
+HAL_TIM_Base_Init       0x08000189   0x1a  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_Base_MspInit    0x08000957   0x26  Code  Gb  bsp_STEPMOTOR.o [1]
+HAL_TIM_Base_Start      0x080001a3   0x12  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_ConfigClockSource
+                        0x080004c1   0xa8  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_IC_CaptureCallback
+                        0x08000593    0x2  Code  Wk  stm32f4xx_hal_tim.o [1]
+HAL_TIM_IRQHandler      0x0800031d  0x14a  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_OC_ConfigChannel
+                        0x08000467   0x4c  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_OC_DelayElapsedCallback
+                        0x08000b2d   0x28  Code  Gb  main.o [1]
+HAL_TIM_OC_Init         0x080001c9   0x18  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_OC_MspInit      0x080001f5    0x2  Code  Wk  stm32f4xx_hal_tim.o [1]
+HAL_TIM_OC_Start_IT     0x080001f7   0x12  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_OC_Stop_IT      0x0800021f   0x30  Code  Gb  stm32f4xx_hal_tim.o [1]
+HAL_TIM_PWM_PulseFinishedCallback
+                        0x08000595    0x2  Code  Wk  stm32f4xx_hal_tim.o [1]
+HAL_TIM_PeriodElapsedCallback
+                        0x08000591    0x2  Code  Wk  stm32f4xx_hal_tim.o [1]
+HAL_TIM_TriggerCallback
+                        0x08000597    0x2  Code  Wk  stm32f4xx_hal_tim.o [1]
+HardFault_Handler       0x08001639    0x2  Code  Gb  stm32f4xx_it.o [1]
+KEY1_StateRead          0x08001459   0x24  Code  Gb  bsp_key.o [1]
+KEY2_StateRead          0x0800147d   0x2a  Code  Gb  bsp_key.o [1]
+KEY3_StateRead          0x080014a7   0x2a  Code  Gb  bsp_key.o [1]
+KEY4_StateRead          0x080014d7   0x2a  Code  Gb  bsp_key.o [1]
+KEY5_StateRead          0x08001509   0x2a  Code  Gb  bsp_key.o [1]
+KEY_GPIO_Init           0x080013e9   0x5a  Code  Gb  bsp_key.o [1]
+MemManage_Handler       0x0800163b    0x2  Code  Gb  stm32f4xx_it.o [1]
+NMI_Handler             0x08001635    0x4  Code  Gb  stm32f4xx_it.o [1]
+NVIC_SetPriority        0x08000e15   0x1a  Code  Lc  stm32f4xx_hal_cortex.o [1]
+PendSV_Handler          0x08001645    0x2  Code  Gb  stm32f4xx_it.o [1]
+Region$$Table$$Base     0x080016ac          --   Gb  - Linker created -
+Region$$Table$$Limit    0x080016bc          --   Gb  - Linker created -
+STEPMOTOR_TIMx_Init     0x08000831   0xfe  Code  Gb  bsp_STEPMOTOR.o [1]
+SVC_Handler             0x08001641    0x2  Code  Gb  stm32f4xx_it.o [1]
+SysTick_Handler         0x08001647    0xe  Code  Gb  stm32f4xx_it.o [1]
+SystemClock_Config      0x08000995   0xaa  Code  Gb  main.o [1]
+SystemCoreClock         0x20000040    0x4  Data  Gb  system_stm32f4xx.o [1]
+SystemInit              0x0800159d   0x3a  Code  Gb  system_stm32f4xx.o [1]
+TIM8_CC_IRQHandler      0x08001655    0x6  Code  Gb  stm32f4xx_it.o [1]
+TIM_Base_SetConfig      0x08000599   0x90  Code  Gb  stm32f4xx_hal_tim.o [1]
+TIM_CCxChannelCmd       0x08000685   0x18  Code  Gb  stm32f4xx_hal_tim.o [1]
+TIM_ETR_SetConfig       0x0800081b   0x14  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_ITRx_SetConfig      0x0800080b   0x10  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_OC1_SetConfig       0x0800069d   0x4a  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_OC2_SetConfig       0x0800062b   0x52  Code  Gb  stm32f4xx_hal_tim.o [1]
+TIM_OC3_SetConfig       0x080006f3   0x56  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_OC4_SetConfig       0x0800074f   0x46  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_TI1_ConfigInputStage
+                        0x080007c5   0x22  Code  Lc  stm32f4xx_hal_tim.o [1]
+TIM_TI2_ConfigInputStage
+                        0x080007e7   0x24  Code  Lc  stm32f4xx_hal_tim.o [1]
+Toggle_Pulse            0x20000000    0x2  Data  Gb  bsp_STEPMOTOR.o [1]
+UsageFault_Handler      0x0800163f    0x2  Code  Gb  stm32f4xx_it.o [1]
+__cmain                 0x080016bd         Code  Gb  cmain.o [5]
+__exit                  0x080016ed   0x14  Code  Gb  exit.o [6]
+__iar_data_init3        0x08001661   0x28  Code  Gb  data_init.o [5]
+__iar_init_vfp          0x08001689         Code  Gb  fpinit_M.o [4]
+__iar_packbits_init_single3
+                        0x080015fd   0x38  Code  Gb  packbits_init_single.o [5]
+__iar_program_start     0x08001711         Code  Gb  cstartup_M.o [5]
+__low_level_init        0x080016d7    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x08000000         Data  Gb  startup_stm32f407xx.o [1]
+_call_main              0x080016c9         Code  Gb  cmain.o [5]
+_exit                   0x080016e1         Code  Gb  cexit.o [5]
+_main                   0x080016d3         Code  Gb  cmain.o [5]
+dir                     0x20000044    0x1  Data  Gb  main.o [1]
+ena                     0x20000045    0x1  Data  Gb  main.o [1]
+exit                    0x080016db    0x4  Code  Gb  exit.o [3]
+htimx_STEPMOTOR         0x20000004   0x3c  Data  Gb  bsp_STEPMOTOR.o [1]
+main                    0x08000a3f   0xe6  Code  Gb  main.o [1]
+pulse_count             0x20000048    0x4  Data  Gb  main.o [1]
+uwTick                  0x2000004c    0x4  Data  Gb  stm32f4xx_hal.o [1]
+
+
+[1] = C:\Users\Administrator\Documents\硬石\YS-F4Pro光盘A_配套资料\3. 程序资料\3. 软件设计之电机例程\3. 硬石步进电机控制例程\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\EWARM\YS-F4Pro\Obj
+[2] = command line
+[3] = dl7M_tlf.a
+[4] = m7M_tls.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  6 218 bytes of readonly  code memory
+     28 bytes of readonly  data memory
+  1 104 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

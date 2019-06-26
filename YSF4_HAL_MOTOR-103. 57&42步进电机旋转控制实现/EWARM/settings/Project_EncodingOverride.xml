@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>C:\Users\Administrator\Documents\&#x786C;&#x77F3;\YS-F4Pro&#x5149;&#x76D8;A_&#x914D;&#x5957;&#x8D44;&#x6599;\3. &#x7A0B;&#x5e8F;&#x8D44;&#x6599;\3. &#x8F6F;&#x4eF6;&#x8BBe;&#x8BA1;&#x4e4B;&#x7535;&#x673A;&#x4F8B;&#x7A0B;\3. &#x786C;&#x77F3;&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x63A7;&#x5236;&#x4F8B;&#x7A0B;\YSF4_HAL_MOTOR-103. 57&amp;42&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x65CB;&#x8F6C;&#x63A7;&#x5236;&#x5B9e;&#x73B0;\Inc\bsp\StepMotor\bsp_STEPMOTOR.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Documents\&#x786C;&#x77F3;\YS-F4Pro&#x5149;&#x76D8;A_&#x914D;&#x5957;&#x8D44;&#x6599;\3. &#x7A0B;&#x5e8F;&#x8D44;&#x6599;\3. &#x8F6F;&#x4eF6;&#x8BBe;&#x8BA1;&#x4e4B;&#x7535;&#x673A;&#x4F8B;&#x7A0B;\3. &#x786C;&#x77F3;&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x63A7;&#x5236;&#x4F8B;&#x7A0B;\YSF4_HAL_MOTOR-103. 57&amp;42&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x65CB;&#x8F6C;&#x63A7;&#x5236;&#x5B9e;&#x73B0;\Src\bsp\StepMotor\bsp_STEPMOTOR.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Documents\&#x786C;&#x77F3;\YS-F4Pro&#x5149;&#x76D8;A_&#x914D;&#x5957;&#x8D44;&#x6599;\3. &#x7A0B;&#x5e8F;&#x8D44;&#x6599;\3. &#x8F6F;&#x4eF6;&#x8BBe;&#x8BA1;&#x4e4B;&#x7535;&#x673A;&#x4F8B;&#x7A0B;\3. &#x786C;&#x77F3;&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x63A7;&#x5236;&#x4F8B;&#x7A0B;\YSF4_HAL_MOTOR-103. 57&amp;42&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x65CB;&#x8F6C;&#x63A7;&#x5236;&#x5B9e;&#x73B0;\Src\bsp\key\bsp_key.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Documents\&#x786C;&#x77F3;\YS-F4Pro&#x5149;&#x76D8;A_&#x914D;&#x5957;&#x8D44;&#x6599;\3. &#x7A0B;&#x5e8F;&#x8D44;&#x6599;\3. &#x8F6F;&#x4eF6;&#x8BBe;&#x8BA1;&#x4e4B;&#x7535;&#x673A;&#x4F8B;&#x7A0B;\3. &#x786C;&#x77F3;&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x63A7;&#x5236;&#x4F8B;&#x7A0B;\YSF4_HAL_MOTOR-103. 57&amp;42&#x6B65;&#x8FDB;&#x7535;&#x673A;&#x65CB;&#x8F6C;&#x63A7;&#x5236;&#x5B9e;&#x73B0;\Src\main.c</path>
+    <encoding>System</encoding>
+  </override>
+</userOverrides>
+
+
