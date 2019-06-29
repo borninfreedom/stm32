@@ -870,11 +870,11 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=ys-f4pro\startup_stm32f407xx.d -oys-f4pro\startup_stm32f407xx.o
- -I"C:\Users\Administrator\Desktop\YSF4_HAL_MOTOR-103. 57&42²½½øµç»úÐý×ª¿ØÖÆÊµÏ
-Ö\MDK-ARM\RTE" -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0 -IC:\Keil_v5\ARM
-\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION S
-ETA 514" --predefine="STM32F407xx SETA 1" --list=startup_stm32f407xx.lst startu
-p_stm32f407xx.s
+ -I"C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42²½½øµç»úÐý×ª¿ØÖ
+ÆÊµÏÖ\MDK-ARM\RTE" -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0 -IC:\Keil_v5
+\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSI
+ON SETA 514" --predefine="STM32F407xx SETA 1" --list=startup_stm32f407xx.lst st
+artup_stm32f407xx.s
 
 
 

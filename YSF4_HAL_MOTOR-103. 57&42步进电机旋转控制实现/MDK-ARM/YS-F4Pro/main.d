@@ -84,3 +84,7 @@ ys-f4pro\main.o: ..\Inc\bsp\adc/bsp_adc.h
 ys-f4pro\main.o: ..\Inc\bsp\lcd/bsp_lcd.h
 ys-f4pro\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ys-f4pro\main.o: ..\Inc\bsp\spiflash/bsp_spiflash.h
+ys-f4pro\main.o: ..\Inc\bsp\led/bsp_led.h
+ys-f4pro\main.o: ..\Inc\bsp\beep/bsp_beep.h
+ys-f4pro\main.o: ../Inc/bsp/bmp/bsp_bmp.h
+ys-f4pro\main.o: ../Inc/bsp/bmp/pic8.h

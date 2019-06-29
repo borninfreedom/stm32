@@ -96,6 +96,9 @@
 "ys-f4pro\bsp_debug_usart.o"
 "ys-f4pro\bsp_lcd.o"
 "ys-f4pro\bsp_spiflash.o"
+"ys-f4pro\bsp_beep.o"
+"ys-f4pro\bsp_led.o"
+"ys-f4pro\bsp_bmp.o"
 --library_type=microlib --strict --scatter "YS-F4Pro\YS-F4Pro.sct"
 
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

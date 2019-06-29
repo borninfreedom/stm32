@@ -21,101 +21,47 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-C:\Users\Administrator\Desktop\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\YS-F4Pro.uvprojx
-Project File Date:  06/24/2019
+C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\YS-F4Pro.uvprojx
+Project File Date:  06/29/2019
 
 <h2>Output:</h2>
 Build target 'YS-F4Pro'
 compiling main.c...
-../Src/main.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(133): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw1 = 1.6 - ADC_ConvertedValueLocal[0];
-../Src/main.c(134): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-../Src/main.c(136): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw2 = 1.6 - ADC_ConvertedValueLocal[1];
-../Src/main.c(137): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-../Src/main.c(167): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] < 1.5 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(167): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] < 1.5 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(167): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] < 1.5 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(175): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw1 = 1.6 - ADC_ConvertedValueLocal[0];
-../Src/main.c(176): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-../Src/main.c(178): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw2 = 1.6 - ADC_ConvertedValueLocal[0];
-../Src/main.c(179): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-../Src/main.c(215): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] >= 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(215): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] >= 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(215): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] >= 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-../Src/main.c(221): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw1 = ADC_ConvertedValueLocal[0] - 1.6;
-../Src/main.c(222): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-../Src/main.c(224): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw2 = ADC_ConvertedValueLocal[0] - 1.6;
-../Src/main.c(225): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-../Src/main.c(261): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] >= 1.8) {
-../Src/main.c(261): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] >= 1.8) {
-../Src/main.c(261): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] >= 1.8) {
-../Src/main.c(266): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw1 = ADC_ConvertedValueLocal[1] - 1.6;
-../Src/main.c(267): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-../Src/main.c(269): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw2 = ADC_ConvertedValueLocal[1] - 1.6;
-../Src/main.c(270): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-../Src/main.c(306): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] <= 1.5) {
-../Src/main.c(306): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] <= 1.5) {
-../Src/main.c(306): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] <= 1.5) {
-../Src/main.c(311): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw1 = 1.6 - ADC_ConvertedValueLocal[1];
-../Src/main.c(312): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-../Src/main.c(314): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp_raw2 = 1.6 - ADC_ConvertedValueLocal[1];
-../Src/main.c(315): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-                        temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-../Src/main.c(77): warning:  #177-D: variable "i" was declared but never referenced
+../Src/main.c(86): warning:  #177-D: variable "i" was declared but never referenced
         uint8_t i;
-../Src/main.c(78): warning:  #550-D: variable "lcdid" was set but never used
+../Src/main.c(88): warning:  #550-D: variable "lcdid" was set but never used
         uint32_t lcdid;
-../Src/main.c(80): warning:  #550-D: variable "count" was set but never used
+../Src/main.c(90): warning:  #550-D: variable "count" was set but never used
         uint16_t count;
-../Src/main.c(81): warning:  #177-D: variable "pulse_temp1" was declared but never referenced
+../Src/main.c(91): warning:  #177-D: variable "pulse_temp1" was declared but never referenced
         float pulse_temp1, pulse_temp2;
-../Src/main.c(81): warning:  #177-D: variable "pulse_temp2" was declared but never referenced
+../Src/main.c(91): warning:  #177-D: variable "pulse_temp2" was declared but never referenced
         float pulse_temp1, pulse_temp2;
-../Src/main.c: 41 warnings, 0 errors
+../Src/main.c(92): warning:  #177-D: variable "temp1" was declared but never referenced
+        float temp1, temp_raw1, temp2, temp_raw2;
+../Src/main.c(92): warning:  #177-D: variable "temp_raw1" was declared but never referenced
+        float temp1, temp_raw1, temp2, temp_raw2;
+../Src/main.c(92): warning:  #177-D: variable "temp2" was declared but never referenced
+        float temp1, temp_raw1, temp2, temp_raw2;
+../Src/main.c(92): warning:  #177-D: variable "temp_raw2" was declared but never referenced
+        float temp1, temp_raw1, temp2, temp_raw2;
+../Src/main.c(93): warning:  #177-D: variable "map_x" was declared but never referenced
+        int map_x, map_y;
+../Src/main.c(93): warning:  #177-D: variable "map_y" was declared but never referenced
+        int map_x, map_y;
+../Src/main.c(94): warning:  #177-D: variable "norm_x" was declared but never referenced
+        double norm_x, norm_y;
+../Src/main.c(94): warning:  #177-D: variable "norm_y" was declared but never referenced
+        double norm_x, norm_y;
+../Src/main.c(95): warning:  #177-D: variable "dmapx" was declared but never referenced
+        double dmapx;
+../Src/main.c: 14 warnings, 0 errors
 linking...
-Program Size: Code=20228 RO-data=6536 RW-data=64 ZI-data=4560  
-"YS-F4Pro\YS-F4Pro.axf" - 0 Error(s), 41 Warning(s).
+Program Size: Code=17112 RO-data=313736 RW-data=64 ZI-data=4560  
+"YS-F4Pro\YS-F4Pro.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\Administrator\Desktop\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE
+  C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0
 
 <h2>Collection of Component Files used:</h2>

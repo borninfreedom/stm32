@@ -913,6 +913,21 @@
               <FileType>1</FileType>
               <FilePath>..\Src\bsp\spiflash\bsp_spiflash.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\bsp\beep\bsp_beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\bsp\led\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_bmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\bsp\bmp\bsp_bmp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
