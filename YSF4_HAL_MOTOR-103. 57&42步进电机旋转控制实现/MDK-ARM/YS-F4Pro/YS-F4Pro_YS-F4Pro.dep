@@ -1,6 +1,6 @@
 Dependencies for Project 'YS-F4Pro', Target 'YS-F4Pro': (DO NOT MODIFY !)
 F (startup_stm32f407xx.s)(0x59230ED4)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 514" --pd "STM32F407xx SETA 1"--list startup_stm32f407xx.lst --xref -o ys-f4pro\startup_stm32f407xx.o --depend ys-f4pro\startup_stm32f407xx.d)
-F (../Src/main.c)(0x5D1737E5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\main.o --omf_browse ys-f4pro\main.crf --depend ys-f4pro\main.d)
+F (../Src/main.c)(0x5D1B0C20)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\main.o --omf_browse ys-f4pro\main.crf --depend ys-f4pro\main.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5D10718C)
 I (../Inc/main.h)(0x593A1824)
@@ -78,10 +78,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fmpi2c.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
-I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D120DAF)
+I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D19ACFB)
 I (..\Inc\bsp\key/bsp_key.h)(0x5930DDEC)
 I (..\Inc\bsp\usart/bsp_debug_usart.h)(0x5929429C)
-I (..\Inc\bsp\adc/bsp_adc.h)(0x5D0E072B)
+I (..\Inc\bsp\adc/bsp_adc.h)(0x5D18B4BD)
 I (..\Inc\bsp\lcd/bsp_lcd.h)(0x59473732)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\Inc\bsp\spiflash/bsp_spiflash.h)(0x58EED2E0)
@@ -167,7 +167,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fmpi2c.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
-F (../Src/stm32f4xx_it.c)(0x5D0E29CA)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\stm32f4xx_it.o --omf_browse ys-f4pro\stm32f4xx_it.crf --depend ys-f4pro\stm32f4xx_it.d)
+F (../Src/stm32f4xx_it.c)(0x5D19BF00)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\stm32f4xx_it.o --omf_browse ys-f4pro\stm32f4xx_it.crf --depend ys-f4pro\stm32f4xx_it.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5D10718C)
 I (../Inc/main.h)(0x593A1824)
@@ -246,9 +246,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
 I (../Inc/stm32f4xx_it.h)(0x593A1824)
-I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D120DAF)
+I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D19ACFB)
 I (..\Inc\bsp\usart/bsp_debug_usart.h)(0x5929429C)
-I (..\Inc\bsp\adc/bsp_adc.h)(0x5D0E072B)
+I (..\Inc\bsp\adc/bsp_adc.h)(0x5D18B4BD)
 F (..\Src\stm32f4xx_assert.c)(0x5AC96F4E)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\stm32f4xx_assert.o --omf_browse ys-f4pro\stm32f4xx_assert.crf --depend ys-f4pro\stm32f4xx_assert.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5D10718C)
@@ -5807,8 +5807,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fmpi2c.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
-F (..\Src\bsp\StepMotor\bsp_STEPMOTOR.c)(0x5D12106D)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\bsp_stepmotor.o --omf_browse ys-f4pro\bsp_stepmotor.crf --depend ys-f4pro\bsp_stepmotor.d)
-I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D120DAF)
+F (..\Src\bsp\StepMotor\bsp_STEPMOTOR.c)(0x5D19BF00)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\bsp_stepmotor.o --omf_browse ys-f4pro\bsp_stepmotor.crf --depend ys-f4pro\bsp_stepmotor.d)
+I (..\Inc\bsp\StepMotor/bsp_STEPMOTOR.h)(0x5D19ACFB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5D10718C)
 I (../Inc/main.h)(0x593A1824)
@@ -5886,6 +5886,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fmpi2c.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
 F (..\Src\bsp\key\bsp_key.c)(0x5930DF00)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\bsp_key.o --omf_browse ys-f4pro\bsp_key.crf --depend ys-f4pro\bsp_key.d)
 I (..\Inc\bsp\key/bsp_key.h)(0x5930DDEC)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
@@ -5965,8 +5966,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fmpi2c.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spdifrx.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dfsdm.h)(0x592E18DB)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_lptim.h)(0x592E18DB)
-F (..\Src\bsp\adc\bsp_adc.c)(0x5D0E072B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\bsp_adc.o --omf_browse ys-f4pro\bsp_adc.crf --depend ys-f4pro\bsp_adc.d)
-I (..\Inc\bsp\adc/bsp_adc.h)(0x5D0E072B)
+F (..\Src\bsp\adc\bsp_adc.c)(0x5D18B07F)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I..\Inc\bsp --C99-I "C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o ys-f4pro\bsp_adc.o --omf_browse ys-f4pro\bsp_adc.crf --depend ys-f4pro\bsp_adc.d)
+I (..\Inc\bsp\adc/bsp_adc.h)(0x5D18B4BD)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x592E18DB)
 I (../Inc/stm32f4xx_hal_conf.h)(0x5D10718C)
 I (../Inc/main.h)(0x593A1824)

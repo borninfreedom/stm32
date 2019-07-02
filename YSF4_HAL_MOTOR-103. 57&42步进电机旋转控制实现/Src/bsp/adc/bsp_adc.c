@@ -62,9 +62,9 @@ void MX_ADCx_Init(void)
   sConfig.Rank = 2;
   HAL_ADC_ConfigChannel(&hadcx, &sConfig);
   
-//  sConfig.Channel = ADC_CHANNEL3;
-//  sConfig.Rank = 3;
-//  HAL_ADC_ConfigChannel(&hadcx, &sConfig);
+  sConfig.Channel = ADC_CHANNEL3;
+  sConfig.Rank = 3;
+  HAL_ADC_ConfigChannel(&hadcx, &sConfig);
 
 //  sConfig.Channel = ADC_CHANNEL4;
 //  sConfig.Rank = 4;
@@ -125,8 +125,8 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     GPIO_InitStruct.Pin = ADC_GPIO_PIN2;
     HAL_GPIO_Init(ADC_GPIO2, &GPIO_InitStruct);
     
-//    GPIO_InitStruct.Pin = ADC_GPIO_PIN3;
-//    HAL_GPIO_Init(ADC_GPIO3, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = ADC_GPIO_PIN3;
+    HAL_GPIO_Init(ADC_GPIO3, &GPIO_InitStruct);
 //    
 //    GPIO_InitStruct.Pin = ADC_GPIO_PIN4;
 //    HAL_GPIO_Init(ADC_GPIO4, &GPIO_InitStruct);

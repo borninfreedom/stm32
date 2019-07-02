@@ -22,43 +22,59 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\YS-F4Pro.uvprojx
-Project File Date:  06/29/2019
+Project File Date:  06/30/2019
 
 <h2>Output:</h2>
 Build target 'YS-F4Pro'
 compiling main.c...
-../Src/main.c(86): warning:  #177-D: variable "i" was declared but never referenced
-        uint8_t i;
-../Src/main.c(88): warning:  #550-D: variable "lcdid" was set but never used
-        uint32_t lcdid;
-../Src/main.c(90): warning:  #550-D: variable "count" was set but never used
-        uint16_t count;
-../Src/main.c(91): warning:  #177-D: variable "pulse_temp1" was declared but never referenced
-        float pulse_temp1, pulse_temp2;
-../Src/main.c(91): warning:  #177-D: variable "pulse_temp2" was declared but never referenced
-        float pulse_temp1, pulse_temp2;
-../Src/main.c(92): warning:  #177-D: variable "temp1" was declared but never referenced
-        float temp1, temp_raw1, temp2, temp_raw2;
-../Src/main.c(92): warning:  #177-D: variable "temp_raw1" was declared but never referenced
-        float temp1, temp_raw1, temp2, temp_raw2;
-../Src/main.c(92): warning:  #177-D: variable "temp2" was declared but never referenced
-        float temp1, temp_raw1, temp2, temp_raw2;
-../Src/main.c(92): warning:  #177-D: variable "temp_raw2" was declared but never referenced
-        float temp1, temp_raw1, temp2, temp_raw2;
-../Src/main.c(93): warning:  #177-D: variable "map_x" was declared but never referenced
-        int map_x, map_y;
-../Src/main.c(93): warning:  #177-D: variable "map_y" was declared but never referenced
-        int map_x, map_y;
-../Src/main.c(94): warning:  #177-D: variable "norm_x" was declared but never referenced
-        double norm_x, norm_y;
-../Src/main.c(94): warning:  #177-D: variable "norm_y" was declared but never referenced
-        double norm_x, norm_y;
-../Src/main.c(95): warning:  #177-D: variable "dmapx" was declared but never referenced
-        double dmapx;
-../Src/main.c: 14 warnings, 0 errors
+../Src/main.c(170): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                adc_final[0] = (int)(ADC_ConvertedValueLocal[0] * 10.0 + 0.5) / 10.0;           
+../Src/main.c(171): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                adc_final[1] = (int)(ADC_ConvertedValueLocal[1] * 10.0 + 0.5) / 10.0;   
+../Src/main.c(172): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                rotation = (int)(ADC_ConvertedValueLocal[2] * 10.0 + 0.5) / 10.0;               
+../Src/main.c(176): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                Toggle_Pulse[0] = Toggle_Pulse[1] = (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) > 225 ? (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) : 225;
+../Src/main.c(176): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                Toggle_Pulse[0] = Toggle_Pulse[1] = (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) > 225 ? (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) : 225;
+../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
+../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
+../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
+../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
+../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
+../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
+../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
+../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
+../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
+../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
+../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
+../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
+../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
+../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
+../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
+../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
+../Src/main.c(99): warning:  #550-D: variable "count" was set but never used
+        uint16_t count;         //lcd显示随机变量使用
+../Src/main.c: 22 warnings, 0 errors
 linking...
-Program Size: Code=17112 RO-data=313736 RW-data=64 ZI-data=4560  
-"YS-F4Pro\YS-F4Pro.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=18992 RO-data=313736 RW-data=88 ZI-data=4720  
+"YS-F4Pro\YS-F4Pro.axf" - 0 Error(s), 22 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\RTE

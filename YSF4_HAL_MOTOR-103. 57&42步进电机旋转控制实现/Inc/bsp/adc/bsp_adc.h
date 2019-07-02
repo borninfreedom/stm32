@@ -68,9 +68,9 @@
 #define ADC_GPIO2                        GPIOF
 #define ADC_CHANNEL2                     ADC_CHANNEL_5
 
-//#define ADC_GPIO_PIN3                    GPIO_PIN_8       
-//#define ADC_GPIO3                        GPIOF
-//#define ADC_CHANNEL3                     ADC_CHANNEL_6    
+#define ADC_GPIO_PIN3                    GPIO_PIN_8       
+#define ADC_GPIO3                        GPIOF
+#define ADC_CHANNEL3                     ADC_CHANNEL_6    
 
 //#define ADC_GPIO_PIN4                    GPIO_PIN_9
 //#define ADC_GPIO4                        GPIOF
@@ -92,7 +92,7 @@
 //#define ADC_GPIO8                        GPIOF
 //#define ADC_CHANNEL8                     ADC_CHANNEL_15
 
-#define ADC_CHANNEL_NUMBER               2
+#define ADC_CHANNEL_NUMBER               3
 
 /* ¿©’π±‰¡ø ------------------------------------------------------------------*/
 extern ADC_HandleTypeDef hadcx;

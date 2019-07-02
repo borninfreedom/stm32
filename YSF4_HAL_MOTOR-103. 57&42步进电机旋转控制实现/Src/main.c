@@ -11,31 +11,41 @@
 #include "bsp/bmp/bsp_bmp.h"
 #include "bsp/bmp/pic8.h"
 
-#define STEPMOTOR_MICRO_STEP      32 																				 // 步进电机驱动器细分，必须与驱动器实际设置对应
 
-uint8_t dir=0; 																																// 0 ：顺时针   1：逆时针 
-uint8_t ena=0; 																															// 0 ：正常运行 1：停机
+#define STEPMOTOR_MICRO_STEP      32											// 步进电机驱动器细分，必须与驱动器实际设置对应
+#define SPEED_SCALE				530
+#define SPEED_SCALE_ROT		870
+#define SPEED_SCALE_JUMP	200
 
-__IO float ADC_ConvertedValueLocal[ADC_CHANNEL_NUMBER];											// 用于保存转换计算后的电压值	 
+#define w	'w'
+#define s 's'
+#define a 'a'
+#define d 'd'
+#define q 'q'
+#define n 'n'
+#define ALPHA_SCALE 0.08
 
-uint32_t ADC_ConvertedValue[ADC_CHANNEL_NUMBER];														// AD转换结果值
+uint8_t stop_flag = 0;
+uint16_t pulse_store[2];
+char str[50]; 	//lcd显示字符串
+__IO float adc_final[2];	//对adc采集值进行处理去漂后的值
+__IO float ADC_ConvertedValueLocal[ADC_CHANNEL_NUMBER];		// 用于保存转换计算后的电压值	 
+__IO float adc_filter;
+__IO float adc_now, adc_pre;
+__IO uint16_t tim6_count=0;
+
+float rotation;	//摇杆旋转值
+	
+uint32_t ADC_ConvertedValue[ADC_CHANNEL_NUMBER];					// AD转换结果值
 uint32_t DMA_Transfer_Complete_Count=0;	
 
-extern __IO uint16_t Toggle_Pulse[2]; 																					/* 步进电机速度控制，可调节范围为 300 -- 3500 ，值越小速度越快 */
+extern __IO uint16_t Toggle_Pulse[2]; 										/* 步进电机速度控制，可调节范围为 300 -- 3500 ，值越小速度越快 */
+uint16_t Toggle_Pulse_Temp[2];
 
-/*
-*    当步进电机驱动器细分设置为1时，每200个脉冲步进电机旋转一周
-*                          为32时，每6400个脉冲步进电机旋转一周
-*    下面以设置为32时为例讲解：
-*    pulse_count用于记录输出脉冲数量，pulse_count为脉冲数的两倍，
-*    比如当pulse_count=12800时，实际输出6400个完整脉冲。
-*    这样可以非常方便步进电机的实际转动圈数，就任意角度都有办法控制输出。
-*    如果步进电机驱动器的细分设置为其它值，pulse_count也要做相应处理
-*
-*/
+__IO uint32_t pulse_count[2]; 														/*  脉冲计数，一个完整的脉冲会增加2 */
 
-__IO uint32_t pulse_count[2]; 																								/*  脉冲计数，一个完整的脉冲会增加2 */
-
+void display(char display_flag);
+	
 void SystemClock_Config(void)
 {
 
@@ -76,36 +86,35 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);															  /* 系统滴答定时器中断优先级配置 */
 }
 
+float filter(float alpha, float adc_now, float adc_pre){
+	return alpha * adc_now + (1 - alpha) * adc_pre;
+}
 
-//long map(long x, long in_min, long in_max, long out_min, long out_max){
-//	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-//}
+float __abs(float value){
+	return value > 0 ? value : -value;
+}
 
 int main(void)
 {  
-	uint8_t i;
-	uint16_t led_count = 0;
-	uint32_t lcdid;
-	char str[50];  
-	uint16_t count;
-	float pulse_temp1, pulse_temp2;
-	float temp1, temp_raw1, temp2, temp_raw2;
-	int map_x, map_y;
-	double norm_x, norm_y;
-	double dmapx;
- 
+	uint16_t count;		//lcd显示随机变量使用
+	uint8_t led_count;	//流水灯使用
+		
   HAL_Init();																					 /* 复位所有外设，初始化Flash接口和系统滴答定时器 */
   SystemClock_Config();																			  /* 配置系统时钟 */
 	
 	/* 板载LED初始化 */
   LED_GPIO_Init();
   
+  BASIC_TIMx_Init();
+	
+//	HAL_TIM_Base_Start_IT(&htimx);
+	
   /* 板载蜂鸣器初始化 */
   BEEP_GPIO_Init();
 	
   KEY_GPIO_Init();
   MX_DEBUG_USART_Init();															  /* 初始化串口并配置串口中断优先级 */ 
-  lcdid=BSP_LCD_Init(); 														 /* 初始化3.5寸TFT液晶模组，一般优先于调试串口初始化 */
+  BSP_LCD_Init(); 														 /* 初始化3.5寸TFT液晶模组，一般优先于调试串口初始化 */
   srand(0xffff);   /* 初始化随机种子 */
 	MX_DMA_Init();
   MX_ADCx_Init();															 /* ADC 初始化 */
@@ -122,450 +131,135 @@ int main(void)
 	LCD_Clear(0,0,LCD_DEFAULT_WIDTH,LCD_DEFAULT_HEIGTH,BLACK);
   LCD_BK_ON();	 /* 开背光 */
 	
-	 //背景图片显示
+	//开机各种启动
   LCD_Fill_Pic(0,0,320,480,gImage_gg);
-	
 	LED1_ON;
 	LED2_ON;
 	LED3_ON;
-	
 	BEEP_ON;
-	HAL_Delay(500);
-	
+	HAL_Delay(800);
 	LED1_OFF;
 	LED2_OFF;
 	LED3_OFF;
-	
-	BEEP_StateSet(BEEPState_OFF); 
 
- LCD_Clear(0,0,LCD_DEFAULT_WIDTH,LCD_DEFAULT_HEIGTH,BLACK);
+	BEEP_StateSet(BEEPState_OFF); 
+  LCD_Clear(0,0,LCD_DEFAULT_WIDTH,LCD_DEFAULT_HEIGTH,BLACK);
  
   while (1)
   {		
 		HAL_Delay(10);
-		led_count ++;
-		count=rand();
-    LCD_Clear(178,150,120,24,BLACK);
-    LCD_Clear(198,190,120,24,BLACK);    
 		
+		//开机先开启流水灯
+		if (led_count > 150)		led_count = 0;
+		switch(led_count){
+			case 0: LED3_OFF; LED1_ON; break;
+			case 50: LED1_OFF; LED2_ON; break;
+			case 100: LED2_OFF; LED3_ON; break;
+		}
+		led_count ++;
+		
+		//lcd显示随机变量
+		count=rand();
+	
+		//获取adc的值
 		ADC_ConvertedValueLocal[0] =(double)(ADC_ConvertedValue[0]&0xFFF)*3.3/4096; // ADC_ConvertedValue[0]只取最低12有效数据
 	  ADC_ConvertedValueLocal[1] =(double)(ADC_ConvertedValue[1]&0xFFF)*3.3/4096; // ADC_ConvertedValue[0]只取最低12有效数据
+		ADC_ConvertedValueLocal[2] =(double)(ADC_ConvertedValue[2]&0xFFF)*3.3/4096; // ADC_ConvertedValue[0]只取最低12有效数据
 		
-		sprintf(str,"ADC-x：%d",ADC_ConvertedValue[0]);  
-		LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-		
-		sprintf(str,"ADC-y：%d",ADC_ConvertedValue[1]);  
-		LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-		
-		sprintf(str,"volta-x：%f",ADC_ConvertedValueLocal[0]);  
-		LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-		
-		sprintf(str,"volta-y：%f",ADC_ConvertedValueLocal[1]);  
-		LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-
-		
-		
-		
-		
-		if (led_count > 300){
-			led_count = 0;
-		}
-		switch(led_count){
-			case 0:
-				 LED3_OFF;
-				 LED1_ON;
-				 break;
-			case 100:
-				LED1_OFF;
-				LED2_ON;
-				break;
-			case 200:
-				LED2_OFF;
-				LED3_ON;
-				break;
+		//对adc的原始数据进行去漂处理，得到的值是稳定的
+		adc_final[0] = (int)(ADC_ConvertedValueLocal[0] * 10.0 + 0.5) / 10.0;		
+		adc_final[1] = (int)(ADC_ConvertedValueLocal[1] * 10.0 + 0.5) / 10.0;	
+		rotation = (int)(ADC_ConvertedValueLocal[2] * 10.0 + 0.5) / 10.0;		
 				
+		adc_filter = filter(ALPHA_SCALE, adc_now, adc_pre);
+		
+		Toggle_Pulse[0] = Toggle_Pulse[1] = (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) > 225 ? (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) : 225;
+		
+#ifndef DEBUG		
+		
+		//停止状态
+		if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
+		  //关闭电机
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_DISABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
+			
+			adc_now = adc_pre = adc_final[0];
+			
+			display(q);
 		}
-		//stop
-//		if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-//			
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-//			
-//			temp_raw1 = 1.6 - ADC_ConvertedValueLocal[0];
-//			temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-//			
-//			temp_raw2 = 1.6 - ADC_ConvertedValueLocal[1];
-//			temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-//			
-//			sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: STOP    ",RED,GREEN,USB_FONT_24);
-//		}
-//		
-//		//forward
-//		else if (ADC_ConvertedValueLocal[0] < 1.5 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-//			
-//	//		if (dir == 1) {
-//				 STEPMOTOR_DIR1_FORWARD();   // 正转
-//				STEPMOTOR_DIR2_FORWARD();
-//	//			 dir = 0;
-//	//		}
-//			
-//			temp_raw1 = 1.6 - ADC_ConvertedValueLocal[0];
-//			temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-//			
-//			temp_raw2 = 1.6 - ADC_ConvertedValueLocal[0];
-//			temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-//			
-//			Toggle_Pulse[0] = 800 - temp1 * 200;
-//			Toggle_Pulse[1] = 800 - temp2 * 200;
+		
+		//前进
+		else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
+			
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			
+			STEPMOTOR_DIR2_FORWARD();	
+			STEPMOTOR_DIR1_REVERSAL();
+						
+			adc_pre = adc_filter;
+			adc_now = adc_final[0];
+		
+			display(w);
+		}
+			
+		
+		//后退
+		else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
+				
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			
+			STEPMOTOR_DIR1_FORWARD();	
+			STEPMOTOR_DIR2_REVERSAL();
+		
+			adc_pre = adc_filter;
+			adc_now = adc_final[0];
+			
+			display(s);
+	}
+				
+		//左转
+		else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
+			
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			
+			STEPMOTOR_DIR2_FORWARD();	
+			STEPMOTOR_DIR1_FORWARD();
+		
+			adc_pre = adc_filter;
+			adc_now = adc_final[1];
+			
+			HAL_TIM_Base_Start_IT(&htimx);
+			display(a);
+		}
+			
+		
+		//右转
+		else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
+			
+		  STEPMOTOR_DIR1_REVERSAL();	
+			STEPMOTOR_DIR2_REVERSAL();
+			
+			adc_pre = adc_filter;
+			adc_now = adc_final[1];
+	
+			display(d);
+		}
+		
+		//未知方向，用来处理不同方向之间的过渡	
+		else {
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_DISABLE);
+			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
+			//if(adc_final[0] > 2.)
+			adc_now = adc_pre = 1.5;
+			display(n);
+		}
+#endif
 
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			
-//			sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: FOEWARD ",GREEN,BLACK,USB_FONT_24);
-//		}
-//		
-//		//backward
-//		else if (ADC_ConvertedValueLocal[0] >= 1.8 && ADC_ConvertedValueLocal[1] > 1.5 && ADC_ConvertedValueLocal[1] < 1.8) {
-//			
-////			dir = 1;
-//			STEPMOTOR_DIR1_REVERSAL();  // 反转
-//			STEPMOTOR_DIR2_REVERSAL();  // 反转
-//			
-//			temp_raw1 = ADC_ConvertedValueLocal[0] - 1.6;
-//			temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-//			
-//			temp_raw2 = ADC_ConvertedValueLocal[0] - 1.6;
-//			temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-//			
-//			Toggle_Pulse[0] = 800 - temp1 * 200;
-//			Toggle_Pulse[1] = 800 - temp2 * 200;
-//			
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			
-//			sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: BACKWARD",GREEN,BLACK,USB_FONT_24);
-//		}
-//		
-//		//左转
-//		else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] >= 1.8) {
-//			
-//			STEPMOTOR_DIR1_REVERSAL();   // 正转
-//			STEPMOTOR_DIR2_FORWARD();
-//			
-//			temp_raw1 = ADC_ConvertedValueLocal[1] - 1.6;
-//			temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-//			
-//			temp_raw2 = ADC_ConvertedValueLocal[1] - 1.6;
-//			temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-//			
-//			Toggle_Pulse[0] = 800 - temp1 * 200;
-//			Toggle_Pulse[1] = 800 - temp2 * 200;
-
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			
-//			sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: LEFT    ",GREEN,BLACK,USB_FONT_24);
-//		}
-//		
-//		//右转
-//		else if (ADC_ConvertedValueLocal[0] > 1.5 && ADC_ConvertedValueLocal[0] < 1.8 && ADC_ConvertedValueLocal[1] <= 1.5) {
-//			
-//			STEPMOTOR_DIR2_REVERSAL();   // 正转
-//			STEPMOTOR_DIR1_FORWARD();
-//			
-//			temp_raw1 = 1.6 - ADC_ConvertedValueLocal[1];
-//			temp1 = (int)(temp_raw1 * 10.0 + 0.5) / 10.0;
-//			
-//			temp_raw2 = 1.6 - ADC_ConvertedValueLocal[1];
-//			temp2 = (int)(temp_raw2 * 10.0 + 0.5) / 10.0;
-//			
-//			Toggle_Pulse[0] = 800 - temp1 * 200;
-//			Toggle_Pulse[1] = 800 - temp2 * 200;
-
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			
-//			sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: RIGHT   ",GREEN,BLACK,USB_FONT_24);
-//		}
-//		else {
-//			
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-//			
-//		  sprintf(str,"ADC0-X：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw1：%f",temp_raw1);  
-//			LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp1：%f",temp1);  
-//			LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse1：%d",Toggle_Pulse[0]);  
-//			LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"ADC1-Y：%f",ADC_ConvertedValueLocal[1]);  
-//			LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp_raw2：%f",temp_raw2);  
-//			LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"temp2：%f",temp2);  
-//			LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			sprintf(str,"pulse2：%d",Toggle_Pulse[1]);  
-//			LCD_DispString_EN_CH(10,240,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			
-//			LCD_DispString_EN(10,300,"status: NONE   ",GREEN,BLACK,USB_FONT_24);
-//			
-//		}
-//		
-//		
-//		
-//		
-		
-		
-//		pulse_temp = (int)(abs(ADC_ConvertedValueLocal[0] - 1.6) * 10.0 + 0.5) / 10.0 * 200 + 400;
-//		
-//	  
-//		
-//		if (ADC_ConvertedValueLocal[0] >= 1.5 && ADC_ConvertedValueLocal[0] <= 1.8){ 	
-//			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-//			
-//			sprintf(str,"ADC[0]-X axis：%f",ADC_ConvertedValueLocal[0]);  
-//			LCD_DispString_EN_CH(10,50,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//			sprintf(str,"pulse_temp：%f",pulse_temp);  
-//			LCD_DispString_EN_CH(10,100,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//		  
-//			LCD_DispString_EN(10,150,"status: STOP",RED,GREEN,USB_FONT_24);
-//		}
-//		else {
-//			if (ADC_ConvertedValueLocal[0] >= 0 && ADC_ConvertedValueLocal[0] <= 1.5){
-//				if(pulse_temp < 320)		pulse_temp = 320;
-//		
-//				sprintf(str,"ADC[0]-X axis：%f",ADC_ConvertedValueLocal[0]);  
-//				LCD_DispString_EN_CH(10,50,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//				sprintf(str,"pulse_temp：%f",pulse_temp);  
-//				LCD_DispString_EN_CH(10,100,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//		
-//				LCD_DispString_EN(10,150,"status: RUN ",GREEN,WHITE,USB_FONT_24);
-//				Toggle_Pulse = pulse_temp;
-//				pulse_count=0;
-//				ena=0;  
-//				TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			}
-//			
-//			if (ADC_ConvertedValueLocal[0] >= 1.7){
-//				sprintf(str,"ADC[0]-X axis：%f",ADC_ConvertedValueLocal[0]);  
-//				LCD_DispString_EN_CH(10,50,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//				sprintf(str,"pulse_temp：%f",pulse_temp);  
-//				LCD_DispString_EN_CH(10,100,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
-//		
-//				LCD_DispString_EN(10,150,"status: RUN ",GREEN,WHITE,USB_FONT_24);
-//				
-//				 STEPMOTOR_DIR_REVERSAL();  // 反转
-//				Toggle_Pulse = pulse_temp;
-//				pulse_count=0;
-//				ena=0;  
-//				TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//			}
-//		}
- 
-//		 if(KEY1_StateRead() == KEY_DOWN){
-////			 while(1){
-//				 HAL_Delay(500);
-//				TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//				if(Toggle_Pulse >= 150) 
-//						Toggle_Pulse -= 2;
-//				else
-//						Toggle_Pulse = 150;
-//			}
-//		}
-//    for(i=0;i<ADC_CHANNEL_NUMBER;i++)
-//    {
-//      /* 3.3为AD转换的参考电压值，stm32的AD转换为12bit，2^12=4096，
-//         即当输入为3.3V时，AD转换结果为4096 */    
-//      ADC_ConvertedValueLocal[i] =(double)(ADC_ConvertedValue[i]&0xFFF)*3.3/4096; // ADC_ConvertedValue[0]只取最低12有效数据
-//    }
-//    
-//    for(i=0;i<ADC_CHANNEL_NUMBER;i++)
-//    {
-//      printf("CH%d value = %d -> %.1fV\r\n",i,ADC_ConvertedValue[i]&0xFFF,(int)(ADC_ConvertedValueLocal[i] * 10.0 + 0.5) / 10.0);
-//    }   
-//    
-//    printf("已经完成AD转换次数：%d\r\n",DMA_Transfer_Complete_Count);
-//    DMA_Transfer_Complete_Count=0;
-//    printf("\n");   
-//    
-		
-		
-//    if(KEY1_StateRead() == KEY_DOWN)  
-//    {
-//      pulse_count=0;            
-//      ena=0;          
-//      TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-//    }
-//    if(KEY2_StateRead() == KEY_DOWN)  // 功能调节
-//    {
-//      Toggle_Pulse-=10;
-//			printf("%d",Toggle_Pulse);
-//    //  if(Toggle_Pulse<50)  // 最快速度限制
-//    //    Toggle_Pulse=50;
-//    }
-//    if(KEY3_StateRead() == KEY_DOWN)
-//    {
-//      Toggle_Pulse+=100;
-//      if(Toggle_Pulse>3500)         // 最慢速度限制
-//        Toggle_Pulse=3500;
-//    }
-//    if(KEY4_StateRead() == KEY_DOWN)
-//    {
-//      if(dir==0)
-//      {
-//        STEPMOTOR_DIR_REVERSAL();  // 反转
-//        dir=1;
-//      }
-//      else
-//      {
-//        STEPMOTOR_DIR_FORWARD();   // 正转
-//        dir=0;
-//      }
-//    }
-//    if(KEY5_StateRead() == KEY_DOWN)
-//    {
-//      if(ena==1)
-//      {
-//        STEPMOTOR_OUTPUT_ENABLE();   // 正常运行
-//        HAL_TIM_OC_Start_IT(&htimx_STEPMOTOR,STEPMOTOR_TIM_CHANNEL_x);
-//        ena=0;
-//      }
-//      else
-//      {
-//        STEPMOTOR_OUTPUT_DISABLE();// 停机
-//        HAL_TIM_OC_Stop_IT(&htimx_STEPMOTOR,STEPMOTOR_TIM_CHANNEL_x);
-//        ena=1;
-//      }
-//    }
  //   if(pulse_count >= STEPMOTOR_MICRO_STEP*200*2*10)  // 转动10圈后停机 
  //   {
   //    TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_TIM_CHANNEL_x,TIM_CCx_DISABLE);
@@ -599,6 +293,19 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
   }
 }
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  tim6_count++;
+	if(tim6_count == 0){
+			pulse_store[0] = Toggle_Pulse_Temp[0];
+	}
+	if(tim6_count == 100){
+		tim6_count = 0;
+		pulse_store[1] = Toggle_Pulse_Temp[0];
+	}
+//	if(pulse_store[1] - pulse_store[0] < 0)	BEEP_ON;
+//	else	BEEP_OFF;
+}
 /**
   * 函数功能: ADC转换完成回调函数
   * 输入参数: hadc：ADC外设设备句柄
@@ -610,4 +317,78 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   DMA_Transfer_Complete_Count++; 
 }
 
+void display(char display_flag){
+		sprintf(str,"adc_final[0]：%f",adc_final[0]);  
+		LCD_DispString_EN_CH(10,0,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		
+		sprintf(str,"Toggle_Pulse_Temp[0]：%d     ",Toggle_Pulse_Temp[0]);  
+		LCD_DispString_EN_CH(10,60,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		
+		sprintf(str,"Toggle_Pulse[0]：%d     ",Toggle_Pulse[0]);  
+		LCD_DispString_EN_CH(10,90,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+	
+		sprintf(str,"adc_final[1]：%f",adc_final[1]);  
+		LCD_DispString_EN_CH(10,150,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+			
+		sprintf(str,"Toggle_Pulse_Temp[1]：%d     ",Toggle_Pulse_Temp[1]);  
+		LCD_DispString_EN_CH(10,180,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		
+		sprintf(str,"Toggle_Pulse[1]：%d     ",Toggle_Pulse[1]);  
+		LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+	
+		sprintf(str,"tim6_count：%d     ",tim6_count);  
+		LCD_DispString_EN_CH(10,270,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+	
+		sprintf(str,"pulse_store[0]：%d     ",pulse_store[0]);  
+		LCD_DispString_EN_CH(10,300,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+	
+		sprintf(str,"pulse_store[1]：%d     ",pulse_store[1]);  
+		LCD_DispString_EN_CH(10,330,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+
+		sprintf(str,"adc_filter：%f     ",adc_filter);  
+		LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		
+		switch(display_flag){
+			case 'w' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：前进",GREEN,BLACK,USB_FONT_24); break;
+			case 's' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：后退",GREEN,BLACK,USB_FONT_24); break;
+			case 'a' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：左转",GREEN,BLACK,USB_FONT_24); break;
+			case 'd' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：右转",GREEN,BLACK,USB_FONT_24); break;
+			case 'q' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：停止",RED,WHITE,USB_FONT_24); break;
+			case 'n' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"状态：过渡",RED,BLACK,USB_FONT_24); break;
+		}
+}
+
+
+//void rotwork(){
+//	if(rotation >= 1.4 && rotation <= 1.7){
+//				if(Toggle_Pulse_Temp[0] < 250 && tim6_count < 200){
+//					for(int i = 500; i > 230; i--){
+//						Toggle_Pulse[0] = i;
+//						Toggle_Pulse[1] = i;
+//						for(int j = 0; j < 20000; j++){}
+//					}
+//				}
+//				else{
+//					Toggle_Pulse[0] = Toggle_Pulse_Temp[0] > 250 ? Toggle_Pulse_Temp[0] : 250;
+//					Toggle_Pulse[1] = Toggle_Pulse_Temp[1] > 250 ? Toggle_Pulse_Temp[1] : 250;
+//				}
+//			}
+//			else if(rotation > 1.7){
+//				Toggle_Pulse[0] = Toggle_Pulse_Temp[0] + (rotation - 1.5) * 200;
+//				Toggle_Pulse[1] = Toggle_Pulse_Temp[1] + (rotation - 1.5) * 200;
+//			}
+//			else{
+//				if((Toggle_Pulse_Temp[0] - (1.5 - rotation) * 200) < 250 && tim6_count < 200){
+//					for(int i = 500; i > 230; i--){
+//						Toggle_Pulse[0] = i;
+//						Toggle_Pulse[1] = i;
+//						for(int j = 0; j < 20000; j++){}
+//					}
+//				}
+//				else{
+//					Toggle_Pulse[0] = (Toggle_Pulse_Temp[0] - (1.5 - rotation) * 200) > 250 ? (Toggle_Pulse_Temp[0] - (1.5 - rotation) * 200) : 250;
+//					Toggle_Pulse[1] = (Toggle_Pulse_Temp[1] - (1.5 - rotation) * 200) > 250 ? (Toggle_Pulse_Temp[1] - (1.5 - rotation) * 200) : 250;
+//				}
+//			}
+//}
 /******************* (C) COPYRIGHT 2015-2020 硬石嵌入式开发团队 *****END OF FILE****/
