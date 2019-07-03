@@ -3,7 +3,7 @@
 <title>Static Call Graph - [YS-F4Pro\YS-F4Pro.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image YS-F4Pro\YS-F4Pro.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Jul 02 15:47:53 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Jul 03 13:11:14 2019
 <BR><P>
 <H3>Maximum Stack Usage =        416 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1387,7 +1387,7 @@ Global Symbols
 
 <P><STRONG><a name="[10c]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[ee]"></a>display</STRONG> (Thumb, 442 bytes, Stack size 40 bytes, main.o(i.display))
+<P><STRONG><a name="[ee]"></a>display</STRONG> (Thumb, 536 bytes, Stack size 40 bytes, main.o(i.display))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = display &rArr; LCD_DispString_EN_CH &rArr; LCD_DispCHAR_CH &rArr; GetGBKCode_SPIFLASH &rArr; SPI_FLASH_ReadID &rArr; SPI_FLASH_SendByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_CheckFlag_BSY &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -1408,7 +1408,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 1478 bytes, Stack size 56 bytes, main.o(i.main))
+<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 1768 bytes, Stack size 56 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 416<LI>Call Chain = main &rArr; display &rArr; LCD_DispString_EN_CH &rArr; LCD_DispCHAR_CH &rArr; GetGBKCode_SPIFLASH &rArr; SPI_FLASH_ReadID &rArr; SPI_FLASH_SendByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_CheckFlag_BSY &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d

@@ -25,6 +25,14 @@
 #define n 'n'
 #define ALPHA_SCALE 0.08
 
+#define STATUS_STOP	0
+#define STATUS_FORWARD 1
+#define STATUS_BACKWARD	2
+#define STATUS_LEFT	3
+#define STATUS_RIGHT	4
+uint8_t status = 0;
+uint8_t status_pre = 0;
+
 uint8_t stop_flag = 0;
 uint16_t pulse_store[2];
 char str[50]; 	//lcdÏÔÊ¾×Ö·û´®
@@ -35,7 +43,12 @@ __IO float adc_now, adc_pre;
 __IO uint16_t tim6_count=0;
 
 float rotation;	//Ò¡¸ËÐý×ªÖµ
-	
+uint32_t count_stop = 0;
+uint32_t count_forward = 0;
+uint32_t count_backward = 0;
+uint32_t count_left = 0;
+uint32_t count_right = 0;
+
 uint32_t ADC_ConvertedValue[ADC_CHANNEL_NUMBER];					// AD×ª»»½á¹ûÖµ
 uint32_t DMA_Transfer_Complete_Count=0;	
 
@@ -182,7 +195,13 @@ int main(void)
 		  //¹Ø±Õµç»ú
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_DISABLE);
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
-			
+			status = 0;
+			status_pre = 0;
+			count_stop = 0;
+			count_forward = 0;
+			count_backward = 0;
+			count_left = 0;
+			count_right = 0;
 			adc_now = adc_pre = adc_final[0];
 			
 			display(q);
@@ -196,41 +215,83 @@ int main(void)
 			
 			STEPMOTOR_DIR2_FORWARD();	
 			STEPMOTOR_DIR1_REVERSAL();
-						
-			adc_pre = adc_filter;
-			adc_now = adc_final[0];
-		
+			
+			count_stop = 0;
+			count_backward = 0;
+			count_left = 0;
+			count_right = 0;
+			count_forward++;
+			if(count_forward == 1){
+				//status_pre = status;
+			//	status = STATUS_FORWARD;
+				adc_now = adc_pre = 1.5;		
+				BEEP_ON;
+			//HAL_Delay(50);
+			}
+			else{  
+				adc_pre = adc_filter;
+				adc_now = adc_final[0];
+			}
+			BEEP_OFF;
 			display(w);
 		}
 			
 		
 		//ºóÍË
 		else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
-				
+				status_pre = status;
+				status = STATUS_BACKWARD;
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
 			
 			STEPMOTOR_DIR1_FORWARD();	
 			STEPMOTOR_DIR2_REVERSAL();
-		
-			adc_pre = adc_filter;
-			adc_now = adc_final[0];
-			
+			count_backward++;
+			count_stop = 0;
+		//	count_backward = 0;
+			count_left = 0;
+			count_right = 0;
+			count_forward = 0;
+			if(count_backward == 1){
+				//status_pre = status;
+			//	status = STATUS_FORWARD;
+				adc_now = adc_pre = 1.5;	
+				BEEP_ON;	
+//HAL_Delay(50);			
+			}
+			else{  
+				adc_pre = adc_filter;
+				adc_now = adc_final[0];
+			}
+			BEEP_OFF;
 			display(s);
 	}
 				
 		//×ó×ª
 		else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
-			
+			status_pre = status;
+				status = STATUS_LEFT;
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-			
+			count_left++;
 			STEPMOTOR_DIR2_FORWARD();	
 			STEPMOTOR_DIR1_FORWARD();
-		
-			adc_pre = adc_filter;
-			adc_now = adc_final[1];
-			
+		  count_stop = 0;
+			count_backward = 0;
+		//	count_left = 0;
+			count_right = 0;
+			count_forward = 0;
+			if(count_left == 1){
+				//status_pre = status;
+			//	status = STATUS_FORWARD;
+				adc_now = adc_pre = 1.5;	
+			BEEP_ON;	//HAL_Delay(50);	
+			}
+			else{  
+				adc_pre = adc_filter;
+				adc_now = adc_final[0];
+			}
+			BEEP_OFF;
 			HAL_TIM_Base_Start_IT(&htimx);
 			display(a);
 		}
@@ -240,13 +301,27 @@ int main(void)
 		else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO1_TIM_CHANNEL_x,TIM_CCx_ENABLE);
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_ENABLE);
-			
+			status_pre = status;
+				status = STATUS_RIGHT;
 		  STEPMOTOR_DIR1_REVERSAL();	
 			STEPMOTOR_DIR2_REVERSAL();
-			
-			adc_pre = adc_filter;
-			adc_now = adc_final[1];
-	
+			count_right++;
+			count_stop = 0;
+			count_backward = 0;
+			count_left = 0;
+		//	count_right = 0;
+			count_forward = 0;
+			if(count_right == 1){
+				//status_pre = status;
+			//	status = STATUS_FORWARD;
+				adc_now = adc_pre = 1.5;	
+				BEEP_ON;//HAL_Delay(50);
+			}
+			else{  
+				adc_pre = adc_filter;
+				adc_now = adc_final[0];
+			}
+			BEEP_OFF;
 			display(d);
 		}
 		
@@ -256,7 +331,13 @@ int main(void)
 			TIM_CCxChannelCmd(STEPMOTOR_TIMx,STEPMOTOR_NO2_TIM_CHANNEL_x,TIM_CCx_DISABLE);
 			//if(adc_final[0] > 2.)
 			adc_now = adc_pre = 1.5;
+			count_stop = 0;
+			count_forward = 0;
+			count_backward = 0;
+			count_left = 0;
+			count_right = 0;
 			display(n);
+		
 		}
 #endif
 
@@ -336,25 +417,30 @@ void display(char display_flag){
 		sprintf(str,"Toggle_Pulse[1]£º%d     ",Toggle_Pulse[1]);  
 		LCD_DispString_EN_CH(10,210,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
 	
-		sprintf(str,"tim6_count£º%d     ",tim6_count);  
+		sprintf(str,"count_forward£º%d     ",count_forward);  
 		LCD_DispString_EN_CH(10,270,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
 	
-		sprintf(str,"pulse_store[0]£º%d     ",pulse_store[0]);  
+		sprintf(str,"adc_pre£º%f     ",adc_pre);  
 		LCD_DispString_EN_CH(10,300,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
 	
-		sprintf(str,"pulse_store[1]£º%d     ",pulse_store[1]);  
+		sprintf(str,"adc_now£º%f     ",adc_now);  
 		LCD_DispString_EN_CH(10,330,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
 
 		sprintf(str,"adc_filter£º%f     ",adc_filter);  
 		LCD_DispString_EN_CH(10,30,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
 		
+		sprintf(str,"count_right£º%d     ",count_right);  
+		LCD_DispString_EN_CH(10,360,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		sprintf(str,"status£º%d     ",status);  
+		LCD_DispString_EN_CH(10,390,(uint8_t *)str,BLACK,YELLOW,USB_FONT_24); 
+		
 		switch(display_flag){
-			case 'w' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£ºÇ°½ø",GREEN,BLACK,USB_FONT_24); break;
-			case 's' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£ººóÍË",GREEN,BLACK,USB_FONT_24); break;
-			case 'a' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£º×ó×ª",GREEN,BLACK,USB_FONT_24); break;
-			case 'd' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£ºÓÒ×ª",GREEN,BLACK,USB_FONT_24); break;
-			case 'q' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£ºÍ£Ö¹",RED,WHITE,USB_FONT_24); break;
-			case 'n' : 	LCD_DispString_EN_CH(10,390,(uint8_t *)"×´Ì¬£º¹ý¶É",RED,BLACK,USB_FONT_24); break;
+			case 'w' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£ºÇ°½ø",GREEN,BLACK,USB_FONT_24); break;
+			case 's' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£ººóÍË",GREEN,BLACK,USB_FONT_24); break;
+			case 'a' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£º×ó×ª",GREEN,BLACK,USB_FONT_24); break;
+			case 'd' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£ºÓÒ×ª",GREEN,BLACK,USB_FONT_24); break;
+			case 'q' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£ºÍ£Ö¹",RED,WHITE,USB_FONT_24); break;
+			case 'n' : 	LCD_DispString_EN_CH(10,420,(uint8_t *)"×´Ì¬£º¹ý¶É",RED,BLACK,USB_FONT_24); break;
 		}
 }
 

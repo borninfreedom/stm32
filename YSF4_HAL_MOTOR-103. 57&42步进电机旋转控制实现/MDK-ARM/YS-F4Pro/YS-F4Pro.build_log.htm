@@ -22,58 +22,58 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 C:\Users\Administrator\repos\stm32\YSF4_HAL_MOTOR-103. 57&42步进电机旋转控制实现\MDK-ARM\YS-F4Pro.uvprojx
-Project File Date:  06/30/2019
+Project File Date:  07/02/2019
 
 <h2>Output:</h2>
 Build target 'YS-F4Pro'
 compiling main.c...
-../Src/main.c(170): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(183): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 adc_final[0] = (int)(ADC_ConvertedValueLocal[0] * 10.0 + 0.5) / 10.0;           
-../Src/main.c(171): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(184): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 adc_final[1] = (int)(ADC_ConvertedValueLocal[1] * 10.0 + 0.5) / 10.0;   
-../Src/main.c(172): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(185): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 rotation = (int)(ADC_ConvertedValueLocal[2] * 10.0 + 0.5) / 10.0;               
-../Src/main.c(176): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(189): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 Toggle_Pulse[0] = Toggle_Pulse[1] = (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) > 225 ? (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) : 225;
-../Src/main.c(176): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(189): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 Toggle_Pulse[0] = Toggle_Pulse[1] = (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) > 225 ? (SPEED_SCALE - __abs(adc_filter - 1.5) * SPEED_SCALE_JUMP) : 225;
-../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(194): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
-../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(194): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
-../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(194): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
-../Src/main.c(181): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(194): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 if (adc_final[0] >= 1.25 && adc_final[0] <= 1.7 && adc_final[1] >= 1.4 && adc_final[1] <= 1.8) {
-../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(211): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
-../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(211): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
-../Src/main.c(192): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(211): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 2.0 && ADC_ConvertedValueLocal[1] >= 0.18 && ADC_ConvertedValueLocal[1] <= 3.0) {
-../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(241): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
-../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(241): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
-../Src/main.c(208): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(241): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] <= 1.2 && adc_final[1] >= 0.3 && adc_final[1] <= 3.0) {
-../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(271): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
-../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(271): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
-../Src/main.c(223): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(271): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (ADC_ConvertedValueLocal[0] >= 0.17 && ADC_ConvertedValueLocal[0] <= 3.1 && ADC_ConvertedValueLocal[1] <= 1.2) {
-../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(301): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
-../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(301): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
-../Src/main.c(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Src/main.c(301): warning:  #1035-D: single-precision operand implicitly converted to double-precision
                 else if (adc_final[0] >= 0.2 && adc_final[0] <= 3.0 && adc_final[1] >= 1.9) {
-../Src/main.c(99): warning:  #550-D: variable "count" was set but never used
+../Src/main.c(112): warning:  #550-D: variable "count" was set but never used
         uint16_t count;         //lcd显示随机变量使用
 ../Src/main.c: 22 warnings, 0 errors
 linking...
-Program Size: Code=18992 RO-data=313736 RW-data=88 ZI-data=4720  
+Program Size: Code=19420 RO-data=313736 RW-data=108 ZI-data=4716  
 "YS-F4Pro\YS-F4Pro.axf" - 0 Error(s), 22 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
